@@ -33,3 +33,6 @@ require("lazy").setup({
   -- automatically check for plugin updates
   checker = { enabled = true },
 })
+
+-- Custom beancount highlighting setup
+require("config.highlight")
