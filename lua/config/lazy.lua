@@ -238,5 +238,6 @@ require("oil").setup({
   },
 })
 
+
 -- Custom beancount highlighting setup
 require("config.highlight")
