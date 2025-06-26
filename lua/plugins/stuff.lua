@@ -6,6 +6,8 @@ return {
 	config = function()
 		-- This command sets the colorscheme when the plugin loads
 		vim.cmd("colorscheme rose-pine")
+		vim.opt.number = true
+		vim.opt.relativenumber = true
 	end,
 	},
 	-- nvim web icons
