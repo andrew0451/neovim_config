@@ -6,6 +6,8 @@ return {
 	config = function()
 		-- This command sets the colorscheme when the plugin loads
 		vim.cmd("colorscheme rose-pine")
+		vim.opt.number = true
+		vim.opt.relativenumber = true
 	end,
 	},
 	-- nvim web icons
@@ -28,6 +30,18 @@ return {
 	lazy = false, -- leave disabled
 	version = "*",
 	config = true,
+},
+	-- oil file explorer
+	{
+  'stevearc/oil.nvim',
+  ---@module 'oil'
+  ---@type oil.SetupOpts
+  opts = {},
+  -- Optional dependencies
+  -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
+  dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+  -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+  lazy = false,
 },
 
 }
