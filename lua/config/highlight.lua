@@ -1,4 +1,3 @@
--- File: lia/config/highlight.lua
 -- force syntax
 vim.cmd("syntax enable")
 
