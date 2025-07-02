@@ -24,13 +24,6 @@ return {
     opts = {},
 },
 
-	-- neorg
-	{
-	"nvim-neorg/neorg",
-	lazy = false, -- leave disabled
-	version = "*",
-	config = true,
-},
 	-- oil file explorer
 	{
   'stevearc/oil.nvim',
