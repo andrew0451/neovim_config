@@ -5,3 +5,31 @@ vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>fo', builtin.oldfiles, {})
+
+local telescope = require("telescope.builtin")
+
+-- Open main index.md notes file
+vim.keymap.set("n", "<leader>ni", function()
+  vim.cmd("e ~/ginhub/notes/index.md")
+end, { desc = "Open main notes index" })
+
+-- Telescope: find notes files
+vim.keymap.set("n", "<leader>fn", function()
+  telescope.find_files({ cwd = "~/ginhub/notes" })
+end, { desc = "Find notes file" })
+
+-- Telescope: live grep in notes
+vim.keymap.set("n", "<leader>sn", function()
+  telescope.live_grep({ cwd = "~/ginhub/notes" })
+end, { desc = "Search notes content" })
+
+-- Toggle markdown checkbox under cursor
+vim.keymap.set("n", "<leader>tt", function()
+  local line = vim.api.nvim_get_current_line()
+  local toggled = line:gsub("%[ %]", "[x]")
+  if toggled == line then
+    -- No unchecked box found, try unchecking
+    toggled = line:gsub("%[x%]", "[ ]")
+  end
+  vim.api.nvim_set_current_line(toggled)
+end, { desc = "Toggle Markdown checkbox" })
