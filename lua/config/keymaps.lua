@@ -33,3 +33,5 @@ vim.keymap.set("n", "<leader>tt", function()
   end
   vim.api.nvim_set_current_line(toggled)
 end, { desc = "Toggle Markdown checkbox" })
+
+
