@@ -34,4 +34,12 @@ vim.keymap.set("n", "<leader>tt", function()
   vim.api.nvim_set_current_line(toggled)
 end, { desc = "Toggle Markdown checkbox" })
 
+-- Inserts current date (YYYY-MM-DD) at cursor, then stays in Normal mode
+vim.keymap.set('n', '<leader>d', function()
+  vim.api.nvim_put({vim.fn.strftime('%Y-%m-%d')}, 'c', true, true)
+end, { silent = true, desc = "Insert YYYY-MM-DD Date (Normal Mode)" })
 
+-- You can also have one for datetime:
+vim.keymap.set('n', '<leader>D', function()
+  vim.api.nvim_put({vim.fn.strftime('%Y-%m-%d %H:%M:%S')}, 'c', true, true)
+end, { silent = true, desc = "Insert YYYY-MM-DD HH:MM:SS Datetime (Normal Mode)" })
