@@ -1,13 +1,12 @@
 return {
 	-- colorscheme
 	{
-	"rose-pine/neovim",
-	name = "rose-pine",
+	"neanias/everforest-nvim",
+	name = "everforest",
 	config = function()
 		-- This command sets the colorscheme when the plugin loads
-		vim.cmd("colorscheme rose-pine")
+		vim.cmd("colorscheme everforest")
 		vim.opt.number = true
-		vim.opt.relativenumber = true
 	end,
 	},
 	-- nvim web icons
