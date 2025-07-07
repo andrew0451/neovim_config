@@ -1,24 +1,12 @@
 return {
   'nvim-telescope/telescope.nvim',
-  tag = '0.1.8',
+  tag = '0.1.8',  -- or the latest stable version
   dependencies = {
-    'nvim-lua/plenary.nvim',
-    {
-      'nvim-telescope/telescope-fzf-native.nvim',
-      build = 'make',
-    },
-    'nvim-telescope/telescope-frecency.nvim',
+    'nvim-lua/plenary.nvim', -- Required dependency
+    'nvim-telescope/telescope-fzf-native.nvim', -- Optional: faster sorting
+    build = 'make',
   },
   config = function()
-    local telescope = require('telescope')
-    telescope.setup({
-      extensions = {
-        frecency = {
-          -- frecency options
-        }
-      }
-    })
-    telescope.load_extension('fzf')
-    telescope.load_extension('frecency')
+    require('telescope').setup()
   end,
 }
