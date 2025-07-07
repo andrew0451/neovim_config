@@ -8,11 +8,6 @@ vim.keymap.set('n', '<leader>fo', builtin.oldfiles, {})
 
 local telescope = require("telescope.builtin")
 
--- Open main index.md notes file
-vim.keymap.set("n", "<leader>ni", function()
-  vim.cmd("e I:/ginhub/notes/index.md")
-end, { desc = "Open main notes index" })
-
 -- Telescope: find notes files
 vim.keymap.set("n", "<leader>fn", function()
   telescope.find_files({ cwd = "~/ginhub/notes" })
