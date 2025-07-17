@@ -19,7 +19,7 @@ vim.keymap.set("n", "<leader>sn", function()
 end, { desc = "Search notes content" })
 
 -- Toggle markdown checkbox under cursor
-vim.keymap.set("n", "<leader>tt", function()
+vim.keymap.set("n", "<leader>xx", function()
   local line = vim.api.nvim_get_current_line()
   local toggled = line:gsub("%[ %]", "[x]")
   if toggled == line then
