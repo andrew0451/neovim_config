@@ -48,3 +48,4 @@ vim.keymap.set('n', '<leader>p', function()
     print("Not a PDF file.")
   end
 end, { desc = "Open PDF in Preview" })
+
