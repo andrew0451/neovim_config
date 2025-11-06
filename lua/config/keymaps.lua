@@ -39,12 +39,3 @@ vim.keymap.set('n', '<leader>D', function()
   vim.api.nvim_put({vim.fn.strftime('%Y-%m-%d %H:%M:%S')}, 'c', true, true)
 end, { silent = true, desc = "Insert YYYY-MM-DD HH:MM:SS Datetime (Normal Mode)" })
 
--- Open PDF separately
-vim.keymap.set('n', '<leader>p', function()
-  local file = vim.fn.expand('%:p')
-  if file:match('%.pdf$') then
-    vim.fn.jobstart({ 'open', file }, { detach = true })
-  else
-    print("Not a PDF file.")
-  end
-end, { desc = "Open PDF in Preview" })
