@@ -10,32 +10,43 @@ local telescope = require("telescope.builtin")
 
 -- Telescope: find notes files
 vim.keymap.set("n", "<leader>fn", function()
-  telescope.find_files({ cwd = "~/ginhub/notes" })
+	telescope.find_files({ cwd = "~/ginhub/notes" })
 end, { desc = "Find notes file" })
 
 -- Telescope: live grep in notes
 vim.keymap.set("n", "<leader>sn", function()
-  telescope.live_grep({ cwd = "~/ginhub/notes" })
+	telescope.live_grep({ cwd = "~/ginhub/notes" })
 end, { desc = "Search notes content" })
 
 -- Toggle markdown checkbox under cursor
 vim.keymap.set("n", "<leader>xx", function()
-  local line = vim.api.nvim_get_current_line()
-  local toggled = line:gsub("%[ %]", "[x]")
-  if toggled == line then
-    -- No unchecked box found, try unchecking
-    toggled = line:gsub("%[x%]", "[ ]")
-  end
-  vim.api.nvim_set_current_line(toggled)
+	local line = vim.api.nvim_get_current_line()
+	local toggled = line:gsub("%[ %]", "[x]")
+	if toggled == line then
+		-- No unchecked box found, try unchecking
+		toggled = line:gsub("%[x%]", "[ ]")
+	end
+	vim.api.nvim_set_current_line(toggled)
 end, { desc = "Toggle Markdown checkbox" })
 
 -- Inserts current date (YYYY-MM-DD) at cursor, then stays in Normal mode
 vim.keymap.set('n', '<leader>d', function()
-  vim.api.nvim_put({vim.fn.strftime('%Y-%m-%d')}, 'c', true, true)
+	vim.api.nvim_put({ vim.fn.strftime('%Y-%m-%d') }, 'c', true, true)
 end, { silent = true, desc = "Insert YYYY-MM-DD Date (Normal Mode)" })
 
 -- You can also have one for datetime:
 vim.keymap.set('n', '<leader>D', function()
-  vim.api.nvim_put({vim.fn.strftime('%Y-%m-%d %H:%M:%S')}, 'c', true, true)
+	vim.api.nvim_put({ vim.fn.strftime('%Y-%m-%d %H:%M:%S') }, 'c', true, true)
 end, { silent = true, desc = "Insert YYYY-MM-DD HH:MM:SS Datetime (Normal Mode)" })
 
+-- Bufferline Keymaps
+vim.keymap.set('n', 'H', '<Cmd>BufferLineCyclePrev<CR>', {
+	desc = 'Go to previous buffer (SHIFT+H)'
+})
+vim.keymap.set('n', 'L', '<Cmd>BufferLineCycleNext<CR>', {
+	desc = 'Go to next buffer (SHIFT+L)'
+})
+
+vim.keymap.set('n', '<leader>bd', '<Cmd>bd<CR>', {
+	desc = 'Delete current buffer'
+})
