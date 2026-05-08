@@ -12,15 +12,22 @@ vim.filetype.add({
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "beancount",
 	callback = function()
+		-- Detach beancount lsp clients
+		for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+			if client.name == "beancount" then
+				vim.lsp.buf_detach_client(0, client.id)
+			end
+		end
+
 		vim.treesitter.stop() -- disables Treesitter for beancount buffers
 
 		-- Custom highlight groups
 		vim.api.nvim_set_hl(0, "BeanDate", { fg = "#eb6f92", bold = true })
-		vim.api.nvim_set_hl(0, "BeanAccount", { fg = "#3e8fb0", bold = true})
-		vim.api.nvim_set_hl(0, "BeanHeader", { fg = "#D75F5F", bold = true})
-		vim.api.nvim_set_hl(0, "BeanComment", { fg = "#888888", italic = true})
-		vim.api.nvim_set_hl(0, "BeanKeyword", { fg = "#ea9a97", bold = true})
-      vim.api.nvim_set_hl(0, "NimMoney", { fg = "#f6c177", bold = true})
+		vim.api.nvim_set_hl(0, "BeanAccount", { fg = "#3e8fb0", bold = true })
+		vim.api.nvim_set_hl(0, "BeanHeader", { fg = "#D75F5F", bold = true })
+		vim.api.nvim_set_hl(0, "BeanComment", { fg = "#888888", italic = true })
+		vim.api.nvim_set_hl(0, "BeanKeyword", { fg = "#ea9a97", bold = true })
+		vim.api.nvim_set_hl(0, "NimMoney", { fg = "#f6c177", bold = true })
 
 		-- Match dates
 		vim.cmd([[syntax match BeanDate /\<\d\{4}\-\d\{1,2}\-\d\{1,2}\>/]])
@@ -37,7 +44,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		-- Keyword highlighting
 		vim.cmd([[syntax keyword BeanKeyword open close * txn pad balance]])
 
-      -- dollar amount highlighting
-      vim.cmd([[syntax match NimMoney /\v\d+((,\d{3})+)?(\.\d{2})?\sUSD/]])
+		-- dollar amount highlighting
+		vim.cmd([[syntax match NimMoney /\v\d+((,\d{3})+)?(\.\d{2})?\sUSD/]])
 	end,
 })

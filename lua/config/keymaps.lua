@@ -1,10 +1,10 @@
-local builtin = require('telescope.builtin')
+local builtin = require("telescope.builtin")
 
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-vim.keymap.set('n', '<leader>fo', builtin.oldfiles, {})
+vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
+vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
+vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
+vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
+vim.keymap.set("n", "<leader>fo", builtin.oldfiles, {})
 
 local telescope = require("telescope.builtin")
 
@@ -30,23 +30,30 @@ vim.keymap.set("n", "<leader>xx", function()
 end, { desc = "Toggle Markdown checkbox" })
 
 -- Inserts current date (YYYY-MM-DD) at cursor, then stays in Normal mode
-vim.keymap.set('n', '<leader>d', function()
-	vim.api.nvim_put({ vim.fn.strftime('%Y-%m-%d') }, 'c', true, true)
+vim.keymap.set("n", "<leader>d", function()
+	vim.api.nvim_put({ vim.fn.strftime("%Y-%m-%d") }, "c", true, true)
 end, { silent = true, desc = "Insert YYYY-MM-DD Date (Normal Mode)" })
 
 -- You can also have one for datetime:
-vim.keymap.set('n', '<leader>D', function()
-	vim.api.nvim_put({ vim.fn.strftime('%Y-%m-%d %H:%M:%S') }, 'c', true, true)
+vim.keymap.set("n", "<leader>D", function()
+	vim.api.nvim_put({ vim.fn.strftime("%Y-%m-%d %H:%M:%S") }, "c", true, true)
 end, { silent = true, desc = "Insert YYYY-MM-DD HH:MM:SS Datetime (Normal Mode)" })
 
 -- Bufferline Keymaps
-vim.keymap.set('n', 'H', '<Cmd>BufferLineCyclePrev<CR>', {
-	desc = 'Go to previous buffer (SHIFT+H)'
+vim.keymap.set("n", "H", "<Cmd>BufferLineCyclePrev<CR>", {
+	desc = "Go to previous buffer (SHIFT+H)",
 })
-vim.keymap.set('n', 'L', '<Cmd>BufferLineCycleNext<CR>', {
-	desc = 'Go to next buffer (SHIFT+L)'
+vim.keymap.set("n", "L", "<Cmd>BufferLineCycleNext<CR>", {
+	desc = "Go to next buffer (SHIFT+L)",
 })
 
-vim.keymap.set('n', '<leader>bd', '<Cmd>bd<CR>', {
-	desc = 'Delete current buffer'
+vim.keymap.set("n", "<leader>bd", "<Cmd>bd<CR>", {
+	desc = "Delete current buffer",
 })
+
+-- Pandoc .md to .pdf converter
+vim.keymap.set("n", "<leader>pp", function()
+	local input = vim.fn.expand("%")
+	local output = vim.fn.expand("%:r") .. ".pdf"
+	vim.cmd("!" .. "pandoc " .. input .. " -o " .. output .. " --template eisvogel")
+end, { desc = "Export to PDF via pandoc" })
